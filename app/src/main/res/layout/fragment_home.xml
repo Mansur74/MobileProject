@@ -8,18 +8,6 @@
     android:orientation="vertical"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vendors"
-        android:padding="10dp"
-        android:layout_marginStart="20dp"
-        android:textSize="24sp"
-        android:textStyle="bold">
-
-    </TextView>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -31,11 +19,12 @@
             android:rowCount="3">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/suit"
                 android:layout_width="175dp"
                 android:layout_height="175dp"
                 android:orientation="vertical"
                 android:layout_margin="10dp"
-                app:cardCornerRadius="50dp"
+                app:cardCornerRadius="25dp"
                 app:cardElevation="5dp"
                 android:clickable="true"
                 android:foreground="@drawable/ripple">
@@ -52,7 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginBottom="20dp"
-                        android:src="@drawable/florist">
+                        android:src="@drawable/suit">
 
                     </ImageView>
                     <TextView
@@ -60,7 +49,44 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textAlignment="center"
-                        android:text="Florists"
+                        android:text="Suit"
+                        android:textSize="18dp">
+
+                    </TextView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dress"
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="5dp"
+                android:clickable="true"
+                android:foreground="@drawable/ripple">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/wedding_dress">
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:text="Dress"
                         android:textSize="18dp">
 
                     </TextView>
@@ -72,7 +98,7 @@
                 android:layout_height="175dp"
                 android:orientation="vertical"
                 android:layout_margin="10dp"
-                app:cardCornerRadius="50dp"
+                app:cardCornerRadius="25dp"
                 app:cardElevation="5dp"
                 android:clickable="true"
                 android:foreground="@drawable/ripple">
@@ -103,7 +129,152 @@
                     </TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="5dp"
+                android:clickable="true"
+                android:foreground="@drawable/ripple">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/wedding_cake">
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:text="Wedding Cake"
+                        android:textSize="18dp">
+
+                    </TextView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="5dp"
+                android:clickable="true"
+                android:foreground="@drawable/ripple">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/salon">
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:text="Salons"
+                        android:textSize="18dp">
+
+                    </TextView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="5dp"
+                android:clickable="true"
+                android:foreground="@drawable/ripple">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/dj">
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:text="DJs"
+                        android:textSize="18dp">
+
+                    </TextView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="175dp"
+                android:layout_height="175dp"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="5dp"
+                android:clickable="true"
+                android:foreground="@drawable/ripple">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="20dp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/about">
+
+                    </ImageView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textAlignment="center"
+                        android:text="About Us"
+                        android:textSize="18dp">
+
+                    </TextView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
 
