@@ -9,9 +9,18 @@
         android:title="Guests"
         android:icon="@drawable/ic_people"/>
 
+    <item android:id="@+id/nav_my_wedding"
+        android:title="Profile"
+        android:icon="@drawable/ic_my_wedding"/>
+
+    <item android:id="@+id/nav_invitations"
+        android:title="Profile"
+        android:icon="@drawable/ic_invitations"/>
+
     <item android:id="@+id/nav_profile"
-        android:title="Guests"
+        android:title="Profile"
         android:icon="@drawable/ic_profile"/>
+
 
 
 

@@ -3,7 +3,7 @@
 
      <item android:state_pressed="true" android:color="@color/dark_ping" />
      <item android:state_checked="true" android:color="@color/dark_ping" />
-     <item android:color="@color/light_ping" />
+     <item android:color="@color/light_ping2" />
 
 
 </selector>

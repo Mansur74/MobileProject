@@ -2,6 +2,7 @@ package com.example.mobileproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
@@ -36,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_guests:
                         fragment = new GuestsFragment();
+                        break;
+
+                    case R.id.nav_profile:
+                        fragment = new ProfileFragment();
                         break;
                 }
 

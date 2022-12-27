@@ -8,7 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_white">#D2D2D2 </color>
-    <color name="light_ping">#FFC0CB</color>
+    <color name="light_ping2">#FFC0CB</color>
+    <color name="light_ping">#66FFC0CB</color>
     <color name="dark_ping">#FF6781</color>
-    <color name="background">#F3F3F3</color>
+    <color name="background">#66FFC0CB</color>
+    <color name="card_background">#F3F3F3</color>
 </resources>

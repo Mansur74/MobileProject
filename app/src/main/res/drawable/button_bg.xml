@@ -2,8 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <stroke
-        android:width="2dp"
-        android:color="@color/background" />
-    <solid android:color="@color/light_ping" />
+        android:width="3dp"
+        android:color="@color/light_ping" />
+    <solid android:color="@color/dark_ping" />
     <corners android:radius="50dp" />
 </shape>

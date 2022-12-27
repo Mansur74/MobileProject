@@ -34,6 +34,8 @@
                 android:padding="10dp"
                 android:layout_marginBottom="10dp"
                 android:hint="E-mail"
+                android:drawableStart="@drawable/ic_baseline_email_24"
+                android:drawablePadding="10dp"
                 android:background="@drawable/edittext_background"
                 android:inputType="textEmailAddress">
 
@@ -46,6 +48,8 @@
                 android:layout_marginBottom="10dp"
                 android:hint="Password"
                 android:background="@drawable/edittext_background"
+                android:drawableStart="@drawable/ic_baseline_lock_open_24"
+                android:drawablePadding="10dp"
                 android:inputType="textPassword">
 
             </EditText>
@@ -60,7 +64,7 @@
                 android:id="@+id/register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/background"
+                android:textColor="@color/card_background"
                 android:background="@drawable/button_bg"
                 android:text="REGISTER">
 
@@ -70,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColor="@color/light_ping"
+                android:textColor="@color/dark_ping"
                 android:layout_alignParentBottom="true"
                 android:text="If you have not an account you can Login from here."
                 >

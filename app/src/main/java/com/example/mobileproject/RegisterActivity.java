@@ -34,6 +34,13 @@ public class RegisterActivity extends AppCompatActivity {
         register = findViewById(R.id.register);
         login = findViewById(R.id.login_text);
 
+        if(SharedPreferencedManager.getInstance(this).isLoggedIn())
+        {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
