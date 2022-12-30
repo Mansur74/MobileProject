@@ -11,7 +11,7 @@
 
     <item android:id="@+id/nav_my_wedding"
         android:title="Profile"
-        android:icon="@drawable/ic_my_wedding"/>
+        android:icon="@drawable/ic_card"/>
 
     <item android:id="@+id/nav_invitations"
         android:title="Profile"

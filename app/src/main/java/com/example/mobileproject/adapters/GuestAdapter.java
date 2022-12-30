@@ -9,11 +9,8 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-
 import com.example.mobileproject.R;
 import com.example.mobileproject.models.Guest;
-import com.example.mobileproject.models.Suit;
 
 import java.util.List;
 
@@ -30,7 +27,7 @@ public class GuestAdapter extends ArrayAdapter<Guest> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         Guest guestData = getItem(position);
-        View currencyView = inflater.inflate(R.layout.list_item_add_guests ,null, true);
+        View currencyView = inflater.inflate(R.layout.list_item_add_guest,null, true);
 
         TextView name = (TextView) currencyView.findViewById(R.id.name);
         TextView surname = (TextView) currencyView.findViewById(R.id.surname);

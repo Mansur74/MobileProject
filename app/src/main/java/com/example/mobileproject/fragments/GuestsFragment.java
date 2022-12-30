@@ -40,11 +40,7 @@ public class GuestsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     DBHelper db;
-    DatabaseReference firebase;
-    FirebaseAuth mAuth;
     ListView guestList;
-    List<Guest> guests;
-    GuestAdapter adapter;
 
     public GuestsFragment() {
         // Required empty public constructor
@@ -87,46 +83,8 @@ public class GuestsFragment extends Fragment {
                 alertDialog(view);
             }
         });
-        firebase = FirebaseDatabase.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
 
-        DatabaseReference ref = firebase.child("users").child(mAuth.getUid()).child("guests");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                guests = new ArrayList<>();
-
-                HashMap<String, Object> dataMap = (HashMap<String, Object>) snapshot.getValue();
-                if(dataMap != null)
-                {
-                    for (String key : dataMap.keySet())
-                    {
-                        Object data = dataMap.get(key);
-
-                        HashMap<String, Object> guestData = (HashMap<String, Object>) data;
-                        String name = (String)guestData.get("name");
-                        String surname = (String)guestData.get("surname");
-                        String gender = (String)guestData.get("gender");
-                        String email = (String)guestData.get("email");
-                        String phoneNum = (String)guestData.get("phone_num");
-                        boolean isConfirmed = (boolean)guestData.get("isConfirmed");
-
-                        guests.add(new Guest(name, surname, gender, email, phoneNum, isConfirmed));
-                    }
-                }
-
-                if (getActivity()!=null){
-                    adapter = new GuestAdapter(getActivity(), guests);
-                    guestList.setAdapter(adapter);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+        db.getGuests(getActivity(), guestList);
 
         return view;
 
