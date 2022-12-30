@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.example.mobileproject.R;
 import com.example.mobileproject.models.Guest;
@@ -34,6 +37,7 @@ public class GuestAdapter extends ArrayAdapter<Guest> {
         TextView gender = (TextView) currencyView.findViewById(R.id.gender);
         TextView email = (TextView) currencyView.findViewById(R.id.email);
         TextView phoneNum = (TextView) currencyView.findViewById(R.id.phone_number);
+        ImageView avatar = (ImageView) currencyView.findViewById(R.id.avatar);
         CheckBox isConfirmed = (CheckBox) currencyView.findViewById(R.id.isConfirmed);
 
         name.setText("Name: " + guestData.getName());
@@ -41,6 +45,12 @@ public class GuestAdapter extends ArrayAdapter<Guest> {
         gender.setText("Gender: " + guestData.getGender());
         email.setText("E-mail: " + guestData.getEmail());
         phoneNum.setText("Phone Num: " + guestData.getPhoneNum());
+
+        if(guestData.getGender().equals("female"))
+            avatar.setImageResource(R.drawable.woman);
+        else if(guestData.getGender().equals("male"))
+            avatar.setImageResource(R.drawable.man);
+
         isConfirmed.setActivated(guestData.isConfirmed());
 
 
