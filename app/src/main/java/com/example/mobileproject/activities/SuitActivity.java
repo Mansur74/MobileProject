@@ -1,4 +1,4 @@
-package com.example.mobileproject;
+package com.example.mobileproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mobileproject.R;
 import com.example.mobileproject.adapters.SuitAdapter;
 import com.example.mobileproject.models.Suit;
 

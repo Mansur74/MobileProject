@@ -1,19 +1,23 @@
-package com.example.mobileproject;
+package com.example.mobileproject.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.mobileproject.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link GuestsFragment#newInstance} factory method to
+ * Use the {@link MyWeddingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GuestsFragment extends Fragment {
+public class MyWeddingFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +28,7 @@ public class GuestsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public GuestsFragment() {
+    public MyWeddingFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +38,11 @@ public class GuestsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GuestsFragment.
+     * @return A new instance of fragment MyWeddingFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static GuestsFragment newInstance(String param1, String param2) {
-        GuestsFragment fragment = new GuestsFragment();
+    public static MyWeddingFragment newInstance(String param1, String param2) {
+        MyWeddingFragment fragment = new MyWeddingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +63,10 @@ public class GuestsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_guests, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_wedding, container, false);
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        TextView textView = toolbar.findViewById(R.id.name);
+        textView.setText("My Wedding");
+        return view;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.mobileproject;
+package com.example.mobileproject.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.mobileproject.R;
+import com.example.mobileproject.activities.SuitActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -49,8 +53,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View myView = inflater.inflate(R.layout.fragment_home, container, false);
-        suit = myView.findViewById(R.id.suit);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        TextView textView = toolbar.findViewById(R.id.name);
+        textView.setText("Vendors");
+        suit = view.findViewById(R.id.suit);
         suit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +65,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        return myView;
+        return view;
 
     }
 }

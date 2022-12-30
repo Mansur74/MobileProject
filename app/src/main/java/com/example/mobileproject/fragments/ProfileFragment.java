@@ -1,15 +1,20 @@
-package com.example.mobileproject;
+package com.example.mobileproject.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.mobileproject.R;
+import com.example.mobileproject.activities.RegisterActivity;
+import com.example.mobileproject.utilities.SharedPreferencedManager;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment {
@@ -47,8 +52,13 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View myView = inflater.inflate(R.layout.fragment_profile, container, false);
-        button = myView.findViewById(R.id.logout);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        Toolbar toolbar = view.findViewById(R.id.toolbar);
+        TextView textView = toolbar.findViewById(R.id.name);
+        textView.setText("Profile");
+
+        button = view.findViewById(R.id.logout);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,6 +70,6 @@ public class ProfileFragment extends Fragment {
                 getActivity().finish();
             }
         });
-        return myView;
+        return view;
     }
 }

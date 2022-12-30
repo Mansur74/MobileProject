@@ -1,6 +1,5 @@
-package com.example.mobileproject;
+package com.example.mobileproject.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -10,29 +9,32 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.mobileproject.R;
+import com.example.mobileproject.activities.LoginActivity;
+import com.example.mobileproject.activities.MainActivity;
+import com.example.mobileproject.adapters.DBHelper;
+import com.example.mobileproject.utilities.SharedPreferencedManager;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
     EditText emailE, passwordE;
     AppCompatButton register;
     TextView login;
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mAuth = FirebaseAuth.getInstance();
         emailE = findViewById(R.id.email);
         passwordE = findViewById(R.id.password);
         register = findViewById(R.id.register);
         login = findViewById(R.id.login_text);
+
+        db = new DBHelper();
 
         if(SharedPreferencedManager.getInstance(this).isLoggedIn())
         {
@@ -46,11 +48,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = emailE.getText().toString();
                 String password = passwordE.getText().toString();
-                mAuth.createUserWithEmailAndPassword(email, password)
+                db.registerEmailandPassword(email, password)
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 SharedPreferencedManager.getInstance(getApplicationContext()).user_login(email);
+                                db.createNewUser(authResult.getUser(), getApplicationContext());
+
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -69,8 +73,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
+
+
+
+
+
+
+
 }

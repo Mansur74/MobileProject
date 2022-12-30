@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/light_ping"
-    tools:context=".ProfileFragment">
+    tools:context=".fragments.ProfileFragment">
 
-    <include layout="@layout/app_bar">  </include>
+    <include layout="@layout/app_bar" android:id="@+id/toolbar">  </include>
 
     <RelativeLayout
         android:layout_width="match_parent"

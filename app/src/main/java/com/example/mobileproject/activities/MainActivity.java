@@ -1,16 +1,20 @@
-package com.example.mobileproject;
+package com.example.mobileproject.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.mobileproject.R;
+import com.example.mobileproject.fragments.GuestsFragment;
+import com.example.mobileproject.fragments.HomeFragment;
+import com.example.mobileproject.fragments.InvitationsFragment;
+import com.example.mobileproject.fragments.MyWeddingFragment;
+import com.example.mobileproject.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_profile:
                         fragment = new ProfileFragment();
+                        break;
+
+                    case R.id.nav_my_wedding:
+                        fragment = new MyWeddingFragment();
+                        break;
+
+                    case R.id.nav_invitations:
+                        fragment = new InvitationsFragment();
                         break;
                 }
 
