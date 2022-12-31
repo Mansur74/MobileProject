@@ -93,7 +93,7 @@ public class GuestsFragment extends Fragment {
 
     public void alertDialog(View v)
     {
-        AlertDialog.Builder dialogBox = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder dialogBox = new AlertDialog.Builder(getContext(), R.style.CustomAlertDialog);
         LayoutInflater factory = LayoutInflater.from(getContext());
 
 

@@ -48,7 +48,7 @@ public class GuestAdapter extends ArrayAdapter<Guest> {
         else if(guestData.getGender().equals("male"))
             avatar.setImageResource(R.drawable.man);
 
-        isConfirmed.setActivated(guestData.isConfirmed());
+        isConfirmed.setChecked(guestData.isConfirmed());
 
 
         return currencyView;

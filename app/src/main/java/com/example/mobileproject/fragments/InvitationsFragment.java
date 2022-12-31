@@ -1,5 +1,6 @@
 package com.example.mobileproject.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -11,12 +12,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mobileproject.R;
+import com.example.mobileproject.activities.InvitationActivity;
 import com.example.mobileproject.adapters.DBHelper;
+import com.example.mobileproject.models.Invitation;
 
 public class InvitationsFragment extends Fragment {
 
@@ -62,7 +66,7 @@ public class InvitationsFragment extends Fragment {
 
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         TextView textView = toolbar.findViewById(R.id.name);
-        textView.setText("Invitations");
+        textView.setText("My Invitations");
 
         addInvitationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,13 +76,25 @@ public class InvitationsFragment extends Fragment {
         });
 
         db.getInvitations(getActivity(), invitationList);
+
+        invitationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Invitation invitation = (Invitation) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getActivity().getApplicationContext(), InvitationActivity.class);
+                intent.putExtra("user_id", invitation.getUser_id());
+                intent.putExtra("verification", invitation.getVerification());
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
 
     public void alertDialog(View v)
     {
-        AlertDialog.Builder dialogBox = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder dialogBox = new AlertDialog.Builder(getContext(), R.style.CustomAlertDialog);
         LayoutInflater factory = LayoutInflater.from(getContext());
 
         final View view = factory.inflate(R.layout.add_invitation_pop, null);

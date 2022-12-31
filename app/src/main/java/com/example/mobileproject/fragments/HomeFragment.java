@@ -61,7 +61,7 @@ public class HomeFragment extends Fragment {
         suit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getApplication(), SuitActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), SuitActivity.class);
                 startActivity(intent);
             }
         });

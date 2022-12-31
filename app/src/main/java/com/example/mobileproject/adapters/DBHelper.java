@@ -176,6 +176,18 @@ public class DBHelper {
 
     }
 
+    public void setConfirm(String user_id, String verification)
+    {
+        DatabaseReference ref = db.child("users").child(user_id).child("guests").child(verification);
+        ref.child("isConfirmed").setValue(true);
+    }
+
+    public void setReject(String user_id, String verification)
+    {
+        DatabaseReference ref = db.child("users").child(user_id).child("guests").child(verification);
+        ref.child("isConfirmed").setValue(false);
+    }
+
 
 
 }
