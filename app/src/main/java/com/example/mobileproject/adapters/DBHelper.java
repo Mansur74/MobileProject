@@ -1,11 +1,16 @@
 package com.example.mobileproject.adapters;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.telephony.SmsManager;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 
 import com.example.mobileproject.models.Invitation;
 import com.example.mobileproject.utilities.SharedPreferencedManager;
@@ -32,6 +37,10 @@ public class DBHelper {
     {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance().getReference();
+    }
+
+    public FirebaseAuth getmAuth() {
+        return mAuth;
     }
 
     public Task<AuthResult> registerEmailandPassword(String email, String password)
@@ -84,13 +93,13 @@ public class DBHelper {
 
                         HashMap<String, Object> guestData = (HashMap<String, Object>) data;
                         String name = (String)guestData.get("name");
-                        String surname = (String)guestData.get("name");
+                        String surname = (String)guestData.get("surname");
                         String gender = (String)guestData.get("gender");
-                        String email = (String)guestData.get("name");
-                        String phoneNum = (String)guestData.get("name");
+                        String email = (String)guestData.get("email");
+                        String phoneNum = (String)guestData.get("phone_num");
                         boolean isConfirmed = (boolean)guestData.get("isConfirmed");
 
-                        guests.add(new Guest(name, surname, gender, email, phoneNum, isConfirmed));
+                        guests.add(new Guest(name, surname, gender, email, phoneNum, key, isConfirmed));
                     }
 
                     if (ctx!=null){
@@ -107,6 +116,15 @@ public class DBHelper {
 
             }
         });
+
+    }
+
+    public Task<Void> deleteGuest(String verification)
+    {
+         DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("guests").child(verification);
+         db.child("verifications").child(verification).getRef().removeValue();
+
+         return ref.getRef().removeValue();
 
     }
 
@@ -188,6 +206,125 @@ public class DBHelper {
         ref.child("isConfirmed").setValue(false);
     }
 
+    public void setBrideName(String brideName)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("my_wedding").child("bride_name");
+        ref.setValue(brideName);
+    }
+
+    public void setGroomName(String groomName)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("my_wedding").child("groom_name");
+        ref.setValue(groomName);
+    }
+
+    public void setMessage(String message)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("my_wedding").child("message");
+        ref.setValue(message);
+    }
+    public void setAddress(String adress)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("my_wedding").child("address");
+        ref.setValue(adress);
+    }
+
+
+    public void setBrideFamily(String brideFamily)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("my_wedding").child("bride_family");
+        ref.setValue(brideFamily);
+    }
+
+    public void setGroomFamily(String groomFamily)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("my_wedding").child("groom_family");
+        ref.setValue(groomFamily);
+    }
+
+    public void setTime(String time)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("my_wedding").child("time");
+        ref.setValue(time);
+    }
+
+    public void setDate(String date)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("my_wedding").child("date");
+        ref.setValue(date);
+    }
+
+    public void getTheInvitation(String user_id, TextView brideName_t, TextView groomName_t, TextView message_t, TextView address_t, TextView brideFamily_t, TextView groomFamily_t, TextView time_t, TextView date_t)
+    {
+        DatabaseReference ref = db.child("users").child(user_id).child("my_wedding");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                HashMap<String, Object> dataMap = (HashMap<String, Object>) snapshot.getValue();
+                String brideName = (String) dataMap.get("bride_name");
+                String groomName = (String) dataMap.get("groom_name");
+                String message = (String) dataMap.get("message");
+                String address = (String) dataMap.get("address");
+                String brideFamily = (String) dataMap.get("bride_family");
+                String groomFamily = (String) dataMap.get("groom_family");
+                String time = (String) dataMap.get("time");
+                String date = (String) dataMap.get("date");
+
+                brideName_t.setText(brideName);
+                groomName_t.setText(groomName);
+                message_t.setText(message);
+                address_t.setText(address);
+                brideFamily_t.setText(brideFamily);
+                groomFamily_t.setText(groomFamily);
+                time_t.setText(time);
+                date_t.setText(date);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void sendSms(Activity ctx, String message)
+    {
+        List<Guest> guests = new ArrayList<>();
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("guests");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                guests.clear();
+                HashMap<String, Object> dataMap = (HashMap<String, Object>) snapshot.getValue();
+                if(dataMap != null)
+                {
+                    for (String key : dataMap.keySet())
+                    {
+                        Object data = dataMap.get(key);
+
+                        HashMap<String, Object> guestData = (HashMap<String, Object>) data;
+                        String name = (String)guestData.get("name");
+                        String surname = (String)guestData.get("surname");
+                        String phoneNum = (String)guestData.get("phone_num");
+
+                        SmsManager sms = SmsManager.getDefault();
+                        ActivityCompat.requestPermissions(ctx, new String[] { Manifest.permission.SEND_SMS}, 1);
+                        sms.sendTextMessage(phoneNum, null, message + "\nVerification Code: " + key, null, null);
+                        Toast.makeText(ctx,"Message is sended to " + name + " " + surname , Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 
 
 }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -85,6 +86,23 @@ public class GuestsFragment extends Fragment {
         });
 
         db.getGuests(getActivity(), guestList);
+
+        guestList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Guest guest = (Guest) adapterView.getItemAtPosition(i);
+                String verification = guest.getVerification();
+                db.deleteGuest(verification)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                GuestAdapter adapter = (GuestAdapter)guestList.getAdapter();
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                return false;
+            }
+        });
 
         return view;
 

@@ -1,46 +1,43 @@
 package com.example.mobileproject.fragments;
 
+import android.Manifest;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobileproject.R;
+import com.example.mobileproject.activities.MainActivity;
+import com.example.mobileproject.adapters.DBHelper;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MyWeddingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MyWeddingFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    DBHelper db;
+    TextView brideName_t, groomName_t, message_t, address_t, brideFamily_t, groomFamily_t, time_t, date_t;
+    AppCompatButton send;
 
     public MyWeddingFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MyWeddingFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static MyWeddingFragment newInstance(String param1, String param2) {
         MyWeddingFragment fragment = new MyWeddingFragment();
         Bundle args = new Bundle();
@@ -67,6 +64,30 @@ public class MyWeddingFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
         TextView textView = toolbar.findViewById(R.id.name);
         textView.setText("My Wedding");
+
+        brideName_t = view.findViewById(R.id.bride_name);
+        groomName_t = view.findViewById(R.id.groom_name);
+        brideFamily_t = view.findViewById(R.id.bride_family);
+        groomFamily_t = view.findViewById(R.id.groom_family);
+        message_t = view.findViewById(R.id.message);
+        address_t = view.findViewById(R.id.address);
+        time_t = view.findViewById(R.id.time);
+        date_t = view.findViewById(R.id.date);
+
+        send = view.findViewById(R.id.send);
+
+        db = new DBHelper();
+        db.getTheInvitation(db.getmAuth().getUid(), brideName_t, groomName_t, message_t, address_t, brideFamily_t, groomFamily_t, time_t, date_t);
+
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.sendSms(getActivity(), "Dugunumuze davetlisiniz, asagida size gonderilen verification kodunuz ile davetiyemizi goruntuleyip davetimize onay verebilirsiniz.");
+            }
+        });
+
         return view;
     }
+
+
 }

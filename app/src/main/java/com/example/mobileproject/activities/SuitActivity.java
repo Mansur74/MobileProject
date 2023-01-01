@@ -1,8 +1,10 @@
 package com.example.mobileproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MotionEventCompat;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -83,6 +85,21 @@ public class SuitActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+
+        int action = MotionEventCompat.getActionMasked(event);
+
+        switch(action) {
+            case (MotionEvent.ACTION_UP) :
+                Toast.makeText(getApplicationContext(), "asfsffa", Toast.LENGTH_LONG).show();
+                return true;
+
+            default :
+                return super.onTouchEvent(event);
+        }
     }
 
 

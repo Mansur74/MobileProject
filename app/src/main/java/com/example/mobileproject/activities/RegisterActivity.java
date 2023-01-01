@@ -54,7 +54,18 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onSuccess(AuthResult authResult) {
                                 SharedPreferencedManager.getInstance(getApplicationContext()).user_login(email);
                                 db.createNewUser(authResult.getUser(), getApplicationContext());
-
+                                db.setBrideName("Bride");
+                                db.setGroomName("Groom");
+                                db.setMessage("Lorem ipsum dolor sit amet " +
+                                        "Lorem ipsum dolor sit amet " +
+                                        "Lorem ipsum dolor sit amet " +
+                                        "Lorem ipsum dolor sit amet " +
+                                        "Lorem ipsum dolor sit amet");
+                                db.setAddress("Adress");
+                                db.setBrideFamily("Family");
+                                db.setGroomFamily("Family");
+                                db.setTime("20:00");
+                                db.setDate("01:01:2023");
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();
