@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,9 +16,8 @@ import com.example.mobileproject.adapters.DBHelper;
 
 public class InvitationActivity extends AppCompatActivity {
 
-    AppCompatButton confirm, reject;
+    AppCompatButton confirm, reject, viewGuests;
     Toolbar toolbar;
-    ListView guestList;
     DBHelper db;
     TextView brideName_t, groomName_t, message_t, address_t, brideFamily_t, groomFamily_t, time_t, date_t;
 
@@ -28,10 +28,10 @@ public class InvitationActivity extends AppCompatActivity {
 
         confirm = findViewById(R.id.confirm);
         reject = findViewById(R.id.reject);
+        viewGuests = findViewById(R.id.view_guests);
+
         toolbar = findViewById(R.id.toolbar);
         db = new DBHelper();
-
-        guestList = findViewById(R.id.guest_list);
 
         brideName_t = findViewById(R.id.bride_name);
         groomName_t = findViewById(R.id.groom_name);
@@ -42,6 +42,7 @@ public class InvitationActivity extends AppCompatActivity {
         time_t = findViewById(R.id.time);
         date_t = findViewById(R.id.date);
 
+        ImageButton backButton = toolbar.findViewById(R.id.back);
         TextView textView = toolbar.findViewById(R.id.name);
         textView.setText("The Invitation");
 
@@ -53,6 +54,12 @@ public class InvitationActivity extends AppCompatActivity {
 
         //db.getGuests(InvitationActivity.this, guestList);
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +72,17 @@ public class InvitationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 db.setReject(userId, verification);
+            }
+        });
+
+        viewGuests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InvitationActivity.this, ViewGuestsActivity.class);
+                intent.putExtra("user_id", userId);
+                intent.putExtra("verification", verification);
+                startActivity(intent);
+                finish();
             }
         });
 

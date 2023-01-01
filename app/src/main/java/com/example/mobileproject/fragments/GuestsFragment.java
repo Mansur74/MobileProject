@@ -85,7 +85,7 @@ public class GuestsFragment extends Fragment {
             }
         });
 
-        db.getGuests(getActivity(), guestList);
+        db.getGuests(getActivity(), db.getmAuth().getUid(), guestList);
 
         guestList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

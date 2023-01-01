@@ -8,7 +8,7 @@
     android:background="@color/light_ping"
     tools:context=".fragments.ProfileFragment">
 
-    <include layout="@layout/app_bar" android:id="@+id/toolbar">  </include>
+    <include layout="@layout/tool_bar" android:id="@+id/toolbar">  </include>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/suit"
+                            android:src="@drawable/man"
                             android:contentDescription="Logo">
 
                         </ImageView>

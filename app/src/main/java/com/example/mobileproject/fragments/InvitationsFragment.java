@@ -20,7 +20,10 @@ import android.widget.TextView;
 import com.example.mobileproject.R;
 import com.example.mobileproject.activities.InvitationActivity;
 import com.example.mobileproject.adapters.DBHelper;
+import com.example.mobileproject.adapters.GuestAdapter;
+import com.example.mobileproject.adapters.InvitationAdapter;
 import com.example.mobileproject.models.Invitation;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 public class InvitationsFragment extends Fragment {
 
@@ -81,10 +84,23 @@ public class InvitationsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Invitation invitation = (Invitation) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(getActivity().getApplicationContext(), InvitationActivity.class);
-                intent.putExtra("user_id", invitation.getUser_id());
-                intent.putExtra("verification", invitation.getVerification());
-                startActivity(intent);
+                db.isGuessExist(invitation.getUser_id(), invitation.getVerification(), getContext().getApplicationContext());
+            }
+        });
+
+        invitationList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Invitation invitation = (Invitation) adapterView.getItemAtPosition(i);
+                db.deleteInvitation(invitation.getVerification())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                InvitationAdapter adapter = (InvitationAdapter)invitationList.getAdapter();
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                return false;
             }
         });
 

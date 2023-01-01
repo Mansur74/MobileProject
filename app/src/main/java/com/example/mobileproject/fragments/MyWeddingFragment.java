@@ -1,25 +1,19 @@
 package com.example.mobileproject.fragments;
 
-import android.Manifest;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mobileproject.R;
-import com.example.mobileproject.activities.MainActivity;
 import com.example.mobileproject.adapters.DBHelper;
+import com.example.mobileproject.utilities.AlertDialogs;
 
 public class MyWeddingFragment extends Fragment {
 
@@ -30,6 +24,7 @@ public class MyWeddingFragment extends Fragment {
     private String mParam2;
 
     DBHelper db;
+    AlertDialogs alertDialogs;
     TextView brideName_t, groomName_t, message_t, address_t, brideFamily_t, groomFamily_t, time_t, date_t;
     AppCompatButton send;
 
@@ -65,6 +60,8 @@ public class MyWeddingFragment extends Fragment {
         TextView textView = toolbar.findViewById(R.id.name);
         textView.setText("My Wedding");
 
+        alertDialogs = new AlertDialogs();
+
         brideName_t = view.findViewById(R.id.bride_name);
         groomName_t = view.findViewById(R.id.groom_name);
         brideFamily_t = view.findViewById(R.id.bride_family);
@@ -86,8 +83,30 @@ public class MyWeddingFragment extends Fragment {
             }
         });
 
-        return view;
-    }
+        brideName_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogs.brideAlertDialog(getContext());
+            }
+        });
 
+        groomName_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogs.groomAlertDialog(getContext());
+            }
+        });
+
+        message_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogs.messageAlertDialog(getContext());
+            }
+        });
+
+        return view;
+
+
+    }
 
 }

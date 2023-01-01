@@ -3,6 +3,7 @@ package com.example.mobileproject.adapters;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.telephony.SmsManager;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
+import com.example.mobileproject.activities.InvitationActivity;
 import com.example.mobileproject.models.Invitation;
 import com.example.mobileproject.utilities.SharedPreferencedManager;
 import com.example.mobileproject.models.Guest;
@@ -76,10 +78,10 @@ public class DBHelper {
 
     }
 
-    public void getGuests(Activity ctx, ListView guestList)
+    public void getGuests(Activity ctx, String userId,  ListView guestList)
     {
         List<Guest> guests = new ArrayList<>();
-        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("guests");
+        DatabaseReference ref = db.child("users").child(userId).child("guests");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -194,6 +196,14 @@ public class DBHelper {
 
     }
 
+    public Task<Void> deleteInvitation(String verification)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("invitations").child(verification);
+
+        return ref.removeValue();
+
+    }
+
     public void setConfirm(String user_id, String verification)
     {
         DatabaseReference ref = db.child("users").child(user_id).child("guests").child(verification);
@@ -292,7 +302,7 @@ public class DBHelper {
     {
         List<Guest> guests = new ArrayList<>();
         DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("guests");
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 guests.clear();
@@ -315,7 +325,6 @@ public class DBHelper {
                     }
 
                 }
-
             }
 
             @Override
@@ -324,6 +333,29 @@ public class DBHelper {
             }
         });
 
+    }
+
+    public void isGuessExist(String userId, String verification, Context ctx)
+    {
+        DatabaseReference ref = db.child("users").child(userId).child("guests").child(verification);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    Intent intent = new Intent(ctx, InvitationActivity.class);
+                    intent.putExtra("user_id", userId);
+                    intent.putExtra("verification", verification);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    ctx.startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 

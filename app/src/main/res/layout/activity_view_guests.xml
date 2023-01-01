@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/light_ping"
+    tools:context=".fragments.GuestsFragment">
+
+    <include layout="@layout/tool_bar" android:id="@+id/toolbar">  </include>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/invitation_but"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/button_bg2"
+        android:textColor="@color/card_background"
+        android:text="Return to The Invitation">
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <ListView
+        android:id="@+id/guest_list"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:padding="20dp"
+        >
+
+    </ListView>
+
+
+</LinearLayout>
