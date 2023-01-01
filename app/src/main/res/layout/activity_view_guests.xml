@@ -8,7 +8,7 @@
     android:background="@color/light_ping"
     tools:context=".fragments.GuestsFragment">
 
-    <include layout="@layout/tool_bar" android:id="@+id/toolbar">  </include>
+    <include layout="@layout/toolbar_activity" android:id="@+id/toolbar">  </include>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/invitation_but"

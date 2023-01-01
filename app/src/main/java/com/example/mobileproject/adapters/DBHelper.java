@@ -78,7 +78,7 @@ public class DBHelper {
 
     }
 
-    public void getGuests(Activity ctx, String userId,  ListView guestList)
+    public void getGuests(Activity ctx, String userId, ListView guestList)
     {
         List<Guest> guests = new ArrayList<>();
         DatabaseReference ref = db.child("users").child(userId).child("guests");

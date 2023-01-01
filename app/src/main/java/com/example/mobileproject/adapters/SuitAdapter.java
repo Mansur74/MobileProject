@@ -25,19 +25,19 @@ public class SuitAdapter extends ArrayAdapter<Suit> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         Suit suitData = getItem(position);
-        View currencyView = inflater.inflate(R.layout.list_item_suit ,null, true);
+        View currencyView = inflater.inflate(R.layout.list_item_dress ,null, true);
 
         TextView brand = (TextView) currencyView.findViewById(R.id.brand);
         TextView name = (TextView) currencyView.findViewById(R.id.name);
         TextView gender = (TextView) currencyView.findViewById(R.id.gender);
         TextView color = (TextView) currencyView.findViewById(R.id.color);
-        TextView date = (TextView) currencyView.findViewById(R.id.date);
+        TextView price = (TextView) currencyView.findViewById(R.id.price);
 
         brand.setText(suitData.getBrand());
         name.setText(suitData.getName());
         gender.setText(suitData.getGender());
         color.setText(suitData.getColor());
-        date.setText(suitData.getDate());
+        price.setText(suitData.getDate());
 
         return currencyView;
     }
