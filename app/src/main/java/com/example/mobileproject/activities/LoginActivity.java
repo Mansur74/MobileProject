@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
-                                SharedPreferencedManager.getInstance(getApplicationContext()).user_login(email);
+                                SharedPreferencedManager.getInstance(getApplicationContext()).user_login(email, "Name", "Surname", "PhoneNum");
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 finish();

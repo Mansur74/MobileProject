@@ -8,8 +8,11 @@ public class SharedPreferencedManager {
     public static SharedPreferencedManager instance;
     public static Context mCtx;
 
-    private static final String SHARED_PREF_NANE = "Shared1";
+    private static final String SHARED_PREF_NAME = "Shared1";
     private static final String USER_EMAIL_KEY = "email";
+    private static final String USER_NAME_KEY = "name";
+    private static final String USER_SURNAME_KEY = "surname";
+    private static final String USER_PHONE_NUMBER_KEY = "phone_num";
 
     public SharedPreferencedManager(Context context) {
         mCtx = context;
@@ -22,18 +25,39 @@ public class SharedPreferencedManager {
         return instance;
     }
 
-    public String getUserEmailKey()
+    public String getUserEmail()
     {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NANE, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(USER_EMAIL_KEY, null);
     }
 
-    public void user_login(String email)
+    public String getName()
     {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NANE, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(USER_NAME_KEY, null);
+    }
+
+    public String getSurname()
+    {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(USER_SURNAME_KEY, null);
+    }
+
+    public String getPhoneNumber()
+    {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(USER_PHONE_NUMBER_KEY, null);
+    }
+
+    public void user_login(String email, String name, String surname, String phoneNum)
+    {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(USER_EMAIL_KEY, email);
+        editor.putString(USER_NAME_KEY, name);
+        editor.putString(USER_SURNAME_KEY, surname);
+        editor.putString(USER_PHONE_NUMBER_KEY, phoneNum);
 
         editor.apply();
 
@@ -41,7 +65,7 @@ public class SharedPreferencedManager {
 
     public boolean isLoggedIn()
     {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NANE, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         if(sharedPreferences.getString(USER_EMAIL_KEY, null) != null)
             return true;
         return false;
@@ -49,7 +73,7 @@ public class SharedPreferencedManager {
 
     public void userLogout()
     {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NANE, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();

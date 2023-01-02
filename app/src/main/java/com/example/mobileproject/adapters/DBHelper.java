@@ -54,7 +54,10 @@ public class DBHelper {
     {
         DatabaseReference ref = db.child("users").child(firebaseUser.getUid());
         ref.child("user_id").setValue(firebaseUser.getUid());
-        ref.child("email").setValue(SharedPreferencedManager.getInstance(ctx).getUserEmailKey());
+        ref.child("email").setValue(SharedPreferencedManager.getInstance(ctx).getUserEmail());
+        ref.child("name").setValue(SharedPreferencedManager.getInstance(ctx).getName());
+        ref.child("surname").setValue(SharedPreferencedManager.getInstance(ctx).getSurname());
+        ref.child("phone_num").setValue(SharedPreferencedManager.getInstance(ctx).getPhoneNumber());
     }
 
     public Task<Void> addGuest(String name, String surname, String gender, String email, String phoneNum)

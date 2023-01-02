@@ -19,12 +19,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileFragment extends Fragment {
 
-    AppCompatButton button;
+    AppCompatButton logOut;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
+
+    TextView email, name, nameSurname, phoneNum;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -58,8 +60,19 @@ public class ProfileFragment extends Fragment {
         TextView textView = toolbar.findViewById(R.id.name);
         textView.setText("Profile");
 
-        button = view.findViewById(R.id.logout);
-        button.setOnClickListener(new View.OnClickListener() {
+        email = view.findViewById(R.id.email);
+        name = view.findViewById(R.id.name);
+        nameSurname = view.findViewById(R.id.name_surname);
+        phoneNum = view.findViewById(R.id.phone_number);
+
+        email.setText(SharedPreferencedManager.getInstance(getContext()).getUserEmail());
+        name.setText(SharedPreferencedManager.getInstance(getContext()).getName());
+        nameSurname.setText(SharedPreferencedManager.getInstance(getContext()).getName() + " " + SharedPreferencedManager.getInstance(getContext()).getSurname());
+        phoneNum.setText(SharedPreferencedManager.getInstance(getContext()).getPhoneNumber());
+
+
+        logOut = view.findViewById(R.id.logout);
+        logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferencedManager.getInstance(getContext()).userLogout();

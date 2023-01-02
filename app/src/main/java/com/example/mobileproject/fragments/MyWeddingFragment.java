@@ -1,32 +1,62 @@
 package com.example.mobileproject.fragments;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobileproject.R;
 import com.example.mobileproject.adapters.DBHelper;
 import com.example.mobileproject.utilities.AlertDialogs;
 
-public class MyWeddingFragment extends Fragment {
+public class MyWeddingFragment extends Fragment implements ActivityCompat.OnRequestPermissionsResultCallback{
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
+    private final int REQUEST_READ_PHONE_STATE=1;
 
     DBHelper db;
     AlertDialogs alertDialogs;
     TextView brideName_t, groomName_t, message_t, address_t, brideFamily_t, groomFamily_t, time_t, date_t;
     AppCompatButton send;
+
+    private ActivityResultLauncher<String> mPermissionResult = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            new ActivityResultCallback<Boolean>() {
+                @Override
+                public void onActivityResult(Boolean result) {
+                    if(result)
+                    {
+                        SmsManager sms = SmsManager.getDefault();
+                        sms.sendTextMessage("05350517263", null, "Verification Code: ", null, null);
+                        Toast.makeText(getContext(),"Message is sended to", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else
+                        return;
+                }
+            }
+    );
+
 
     public MyWeddingFragment() {
         // Required empty public constructor
@@ -79,7 +109,7 @@ public class MyWeddingFragment extends Fragment {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.sendSms(getActivity(), "Dugunumuze davetlisiniz, asagida size gonderilen verification kodunuz ile davetiyemizi goruntuleyip davetimize onay verebilirsiniz.");
+                mPermissionResult.launch(Manifest.permission.SEND_SMS);
             }
         });
 
@@ -108,5 +138,12 @@ public class MyWeddingFragment extends Fragment {
 
 
     }
+
+
+
+
+
+
+
 
 }

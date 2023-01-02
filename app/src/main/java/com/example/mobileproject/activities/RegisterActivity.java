@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
-                                SharedPreferencedManager.getInstance(getApplicationContext()).user_login(email);
+                                SharedPreferencedManager.getInstance(getApplicationContext()).user_login(email, "Name", "Surname", "(000) 000 00 00");
                                 db.createNewUser(authResult.getUser(), getApplicationContext());
                                 db.setBrideName("Bride");
                                 db.setGroomName("Groom");
