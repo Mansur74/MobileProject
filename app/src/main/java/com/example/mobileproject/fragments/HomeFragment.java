@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,7 @@ public class HomeFragment extends Fragment {
         TextView textView = toolbar.findViewById(R.id.name);
         textView.setText("Vendors");
         suit = view.findViewById(R.id.suit);
+
         suit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -46,9 +46,7 @@ public class MyWeddingFragment extends Fragment implements ActivityCompat.OnRequ
                 public void onActivityResult(Boolean result) {
                     if(result)
                     {
-                        SmsManager sms = SmsManager.getDefault();
-                        sms.sendTextMessage("05350517263", null, "Verification Code: ", null, null);
-                        Toast.makeText(getContext(),"Message is sended to", Toast.LENGTH_SHORT).show();
+                       db.sendSms(getActivity(), "Dugunumuze davetlisiniz, alttaki varification kodunu kullanmayi unutmayin.");
 
                     }
                     else
@@ -131,6 +129,34 @@ public class MyWeddingFragment extends Fragment implements ActivityCompat.OnRequ
             @Override
             public void onClick(View view) {
                 alertDialogs.messageAlertDialog(getContext());
+            }
+        });
+
+        address_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogs.adressAlertDialog(getContext());
+            }
+        });
+
+        brideFamily_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogs.brideFamilyAlertDialog(getContext());
+            }
+        });
+
+        groomFamily_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogs.groomFamilyAlertDialog(getContext());
+            }
+        });
+
+        date_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogs.timeAndDate(getContext());
             }
         });
 

@@ -322,7 +322,6 @@ public class DBHelper {
                         String phoneNum = (String)guestData.get("phone_num");
 
                         SmsManager sms = SmsManager.getDefault();
-                        ActivityCompat.requestPermissions(ctx, new String[] { Manifest.permission.SEND_SMS}, 1);
                         sms.sendTextMessage(phoneNum, null, message + "\nVerification Code: " + key, null, null);
                         Toast.makeText(ctx,"Message is sended to " + name + " " + surname , Toast.LENGTH_SHORT).show();
                     }
