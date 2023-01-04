@@ -1,25 +1,20 @@
 package com.example.mobileproject.fragments;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mobileproject.R;
 import com.example.mobileproject.adapters.DBHelper;
@@ -46,8 +41,22 @@ public class MyWeddingFragment extends Fragment implements ActivityCompat.OnRequ
                 public void onActivityResult(Boolean result) {
                     if(result)
                     {
-                       db.sendSms(getActivity(), "Dugunumuze davetlisiniz, alttaki varification kodunu kullanmayi unutmayin.");
+                        mPermissionResult2.launch(Manifest.permission.READ_PHONE_STATE);
+                    }
+                    else
+                        return;
+                }
+            }
+    );
 
+    private ActivityResultLauncher<String> mPermissionResult2 = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            new ActivityResultCallback<Boolean>() {
+                @Override
+                public void onActivityResult(Boolean result) {
+                    if(result)
+                    {
+                        db.sendSms(getActivity(), "Dugunumuze davetlisiniz, alttaki varification kodunu kullanmayi unutmayin.");
                     }
                     else
                         return;
@@ -111,6 +120,13 @@ public class MyWeddingFragment extends Fragment implements ActivityCompat.OnRequ
             }
         });
 
+        time_t.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogs.time(getContext());
+            }
+        });
+
         brideName_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,7 +172,7 @@ public class MyWeddingFragment extends Fragment implements ActivityCompat.OnRequ
         date_t.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialogs.timeAndDate(getContext());
+                alertDialogs.date(getContext());
             }
         });
 

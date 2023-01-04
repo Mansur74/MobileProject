@@ -13,14 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.mobileproject.R;
 import com.example.mobileproject.adapters.DBHelper;
 import com.example.mobileproject.adapters.GuestAdapter;
 import com.example.mobileproject.models.Guest;
+import com.example.mobileproject.utilities.AlertDialogs;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +45,7 @@ public class GuestsFragment extends Fragment {
     private String mParam2;
     DBHelper db;
     ListView guestList;
+    AlertDialogs alertDialogs;
 
     public GuestsFragment() {
         // Required empty public constructor
@@ -74,6 +78,8 @@ public class GuestsFragment extends Fragment {
         TextView textView = toolbar.findViewById(R.id.name);
         textView.setText("Guests");
 
+        alertDialogs = new AlertDialogs();
+
         CardView addGuestButton = view.findViewById(R.id.add_guest);
         db = new DBHelper();
         guestList = view.findViewById(R.id.guest_list);
@@ -81,82 +87,16 @@ public class GuestsFragment extends Fragment {
         addGuestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialog(view);
+                alertDialogs.getGuests(getContext());
             }
         });
 
-        db.getGuests(getActivity(), db.getmAuth().getUid(), guestList);
+        db.getGuests(getActivity(), db.getmAuth().getUid(), guestList, 0);
 
-        guestList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Guest guest = (Guest) adapterView.getItemAtPosition(i);
-                String verification = guest.getVerification();
-                db.deleteGuest(verification)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                GuestAdapter adapter = (GuestAdapter)guestList.getAdapter();
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
-                return false;
-            }
-        });
 
         return view;
 
 
     }
 
-    public void alertDialog(View v)
-    {
-        AlertDialog.Builder dialogBox = new AlertDialog.Builder(getContext(), R.style.CustomAlertDialog);
-        LayoutInflater factory = LayoutInflater.from(getContext());
-
-
-        final View view = factory.inflate(R.layout.add_guest_pop, null);
-
-        EditText name = view.findViewById(R.id.name);
-        EditText surname = view.findViewById(R.id.surname);
-        EditText gender = view.findViewById(R.id.gender);
-        EditText email = view.findViewById(R.id.email);
-        EditText phone = view.findViewById(R.id.tel_num);
-
-        AppCompatButton addButton = view.findViewById(R.id.add_guest);
-        AppCompatButton cancelButton = view.findViewById(R.id.cancel);
-
-        dialogBox.setView(view);
-        final AlertDialog dialog = dialogBox.create();
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name_t = name.getText().toString();
-                String surname_t = surname.getText().toString();
-                String gender_t = gender.getText().toString();
-                String email_t = email.getText().toString();
-                String phone_t = phone.getText().toString();
-
-                db.addGuest(name_t, surname_t, gender_t, email_t, phone_t)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                dialog.cancel();
-                            }
-                        });
-
-            }
-        });
-
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.cancel();
-            }
-        });
-
-        dialog.show();
-
-    }
 }

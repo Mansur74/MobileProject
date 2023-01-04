@@ -39,7 +39,7 @@ public class ViewGuestsActivity extends AppCompatActivity {
         userId = getIntent().getStringExtra("user_id");
         verification = getIntent().getStringExtra("verification");
 
-        db.getGuests(ViewGuestsActivity.this, userId, guestList);
+        db.getGuests(ViewGuestsActivity.this, userId, guestList, 1);
 
 
         back.setOnClickListener(new View.OnClickListener() {

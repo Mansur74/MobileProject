@@ -23,6 +23,7 @@ import com.example.mobileproject.adapters.DBHelper;
 import com.example.mobileproject.adapters.GuestAdapter;
 import com.example.mobileproject.adapters.InvitationAdapter;
 import com.example.mobileproject.models.Invitation;
+import com.example.mobileproject.utilities.AlertDialogs;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class InvitationsFragment extends Fragment {
@@ -34,6 +35,7 @@ public class InvitationsFragment extends Fragment {
     private String mParam2;
     DBHelper db;
     ListView invitationList;
+    AlertDialogs alertDialogs;
 
     public InvitationsFragment() {
         // Required empty public constructor
@@ -71,75 +73,19 @@ public class InvitationsFragment extends Fragment {
         TextView textView = toolbar.findViewById(R.id.name);
         textView.setText("My Invitations");
 
+        alertDialogs = new AlertDialogs();
+
         addInvitationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialog(view);
+                alertDialogs.getInvitations(getContext());
             }
         });
 
         db.getInvitations(getActivity(), invitationList);
 
-        invitationList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Invitation invitation = (Invitation) adapterView.getItemAtPosition(i);
-                db.isGuessExist(invitation.getUser_id(), invitation.getVerification(), getContext().getApplicationContext());
-            }
-        });
-
-        invitationList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Invitation invitation = (Invitation) adapterView.getItemAtPosition(i);
-                db.deleteInvitation(invitation.getVerification())
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                InvitationAdapter adapter = (InvitationAdapter)invitationList.getAdapter();
-                                adapter.notifyDataSetChanged();
-                            }
-                        });
-                return false;
-            }
-        });
-
         return view;
     }
 
 
-    public void alertDialog(View v)
-    {
-        AlertDialog.Builder dialogBox = new AlertDialog.Builder(getContext(), R.style.CustomAlertDialog);
-        LayoutInflater factory = LayoutInflater.from(getContext());
-
-        final View view = factory.inflate(R.layout.add_invitation_pop, null);
-
-        EditText verification = view.findViewById(R.id.verification_code);
-
-        AppCompatButton addButton = view.findViewById(R.id.add_invitation);
-        AppCompatButton cancelButton = view.findViewById(R.id.cancel);
-
-        dialogBox.setView(view);
-        final AlertDialog dialog = dialogBox.create();
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String verification_t = verification.getText().toString();
-                db.addInvitation(verification_t, dialog);
-
-            }
-        });
-
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.cancel();
-            }
-        });
-
-        dialog.show();
-
-    }
 }

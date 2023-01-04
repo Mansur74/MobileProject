@@ -103,6 +103,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/bouquet"
                 android:layout_columnWeight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -134,13 +135,14 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textAlignment="center"
-                        android:text="Florists"
+                        android:text="Bouquets"
                         android:textSize="18dp">
 
                     </TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:id="@+id/cake"
                 android:layout_columnWeight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -180,6 +182,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/jewelry"
                 android:layout_columnWeight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -203,7 +206,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginBottom="20dp"
-                        android:src="@drawable/salon">
+                        android:src="@drawable/rings"
+                        >
 
                     </ImageView>
                     <TextView
@@ -211,13 +215,14 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textAlignment="center"
-                        android:text="Salons"
+                        android:text="Jewelry"
                         android:textSize="18dp">
 
                     </TextView>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:id="@+id/music"
                 android:layout_columnWeight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -249,7 +254,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:textAlignment="center"
-                        android:text="DJs"
+                        android:text="Musics"
                         android:textSize="18dp"
                         android:background="@color/card_background">
 
@@ -258,6 +263,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/about_us"
                 android:layout_columnWeight="1"
                 android:layout_width="0dp"
                 android:layout_height="175dp"

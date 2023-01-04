@@ -6,21 +6,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mobileproject.R;
 import com.example.mobileproject.models.Guest;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.List;
 
 public class GuestAdapter extends ArrayAdapter<Guest> {
 
     private final LayoutInflater inflater;
+    private DBHelper db;
+    private GuestAdapter adapter;
 
     public GuestAdapter(Activity context, List<Guest> views) {
         super(context, 0, views);
         inflater = LayoutInflater.from(context);
+        db = new DBHelper();
+        adapter = this;
     }
 
     @Override
@@ -35,6 +42,7 @@ public class GuestAdapter extends ArrayAdapter<Guest> {
         TextView email = (TextView) currencyView.findViewById(R.id.email);
         TextView phoneNum = (TextView) currencyView.findViewById(R.id.phone_number);
         ImageView avatar = (ImageView) currencyView.findViewById(R.id.avatar);
+        ImageButton delete = (ImageButton) currencyView.findViewById(R.id.delete_guest);
         CheckBox isConfirmed = (CheckBox) currencyView.findViewById(R.id.isConfirmed);
 
         name.setText("Name: " + guestData.getName());
@@ -49,6 +57,21 @@ public class GuestAdapter extends ArrayAdapter<Guest> {
             avatar.setImageResource(R.drawable.man);
 
         isConfirmed.setChecked(guestData.isConfirmed());
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                db.deleteGuest(guestData.getVerification())
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+            }
+        });
+
+
 
 
         return currencyView;

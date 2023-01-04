@@ -9,9 +9,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="40dp"
-        android:text="Wedding \n         Planner"
-        android:textSize="50sp"
+        android:layout_marginTop="50dp"
+        android:text="Register"
+        android:textAlignment="center"
+        android:textSize="35sp"
         android:textColor="@color/dark_ping"
         >
 
@@ -20,12 +21,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="50dp"
             android:layout_alignParentStart="true">
             <EditText
                 android:id="@+id/email"
@@ -66,6 +67,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/card_background"
                 android:background="@drawable/button_bg"
+                android:layout_marginBottom="5dp"
                 android:text="REGISTER">
 
             </androidx.appcompat.widget.AppCompatButton>
@@ -76,7 +78,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/dark_ping"
                 android:layout_alignParentBottom="true"
-                android:text="If you have not an account you can Login from here."
+                android:text="If you have an account you can Login from here."
                 >
 
             </TextView>

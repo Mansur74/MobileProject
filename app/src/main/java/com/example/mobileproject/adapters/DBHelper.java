@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 
 import com.example.mobileproject.activities.InvitationActivity;
+import com.example.mobileproject.activities.MainActivity;
 import com.example.mobileproject.models.Invitation;
 import com.example.mobileproject.utilities.SharedPreferencedManager;
 import com.example.mobileproject.models.Guest;
@@ -60,10 +61,43 @@ public class DBHelper {
         ref.child("phone_num").setValue(SharedPreferencedManager.getInstance(ctx).getPhoneNumber());
     }
 
+    public void getUserInformations(Activity ctx)
+    {
+        DatabaseReference ref = db.child("users").child(mAuth.getUid());
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                HashMap<String, Object> dataMap = (HashMap<String, Object>) snapshot.getValue();
+                if(dataMap != null)
+                {
+
+                    String name = (String)dataMap.get("name");
+                    String surname = (String)dataMap.get("surname");
+                    String email = (String)dataMap.get("email");
+                    String phoneNum = (String)dataMap.get("phone_num");
+
+                    SharedPreferencedManager.getInstance(ctx).user_login(email, name, surname, phoneNum);
+                    Intent intent = new Intent(ctx, MainActivity.class);
+                    ctx.startActivity(intent);
+                    ctx.finish();
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
     public Task<Void> addGuest(String name, String surname, String gender, String email, String phoneNum)
     {
-        int max = 999999;
-        int min = 100000;
+        int max = 99999999;
+        int min = 10000000;
         int range = max - min + 1;
         int rand = (int)(Math.random() * range) + min;
         DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("guests").child(Integer.toString(rand));
@@ -81,7 +115,7 @@ public class DBHelper {
 
     }
 
-    public void getGuests(Activity ctx, String userId, ListView guestList)
+    public void getGuests(Activity ctx, String userId, ListView guestList, int i)
     {
         List<Guest> guests = new ArrayList<>();
         DatabaseReference ref = db.child("users").child(userId).child("guests");
@@ -107,8 +141,13 @@ public class DBHelper {
                         guests.add(new Guest(name, surname, gender, email, phoneNum, key, isConfirmed));
                     }
 
-                    if (ctx!=null){
+                    if(ctx!=null && i == 0){
                         GuestAdapter adapter = new GuestAdapter(ctx, guests);
+                        guestList.setAdapter(adapter);
+                    }
+
+                    else if(ctx!=null && i == 1){
+                        GuestViewAdapter adapter = new GuestViewAdapter(ctx, guests);
                         guestList.setAdapter(adapter);
                     }
                 }
@@ -146,9 +185,9 @@ public class DBHelper {
                     DatabaseReference ref = db.child("users").child(mAuth.getUid()).child("invitations").child(verification);
                     ref.child("user_id").setValue(user_id);
                     ref.child("verification").setValue(verification);
+                    dialog.cancel();
                 }
 
-                dialog.cancel();
 
             }
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context=".activities.AboutUs">
+
+    <include layout="@layout/toolbar_activity" android:id="@+id/toolbar"></include>
+
+    <LinearLayout
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:padding="25dp"
+        android:background="@drawable/background_corner"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#c4c4c4"
+            android:text="Behlül Mansur Çıldır">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#c4c4c4"
+            android:text="Sühan Sarı">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#c4c4c4"
+            android:text="Ahmad Cbeili">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#c4c4c4"
+            android:text="Orçun Türkokuloğlu">
+
+        </TextView>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

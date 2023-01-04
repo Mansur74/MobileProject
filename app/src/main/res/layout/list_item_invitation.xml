@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.SuitActivity">
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_corner"
+    android:id="@+id/invitation_layout"
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/verification_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
         android:text="Verification Code: ">
 
     </TextView>
 
-    <TextView
-        android:id="@+id/user_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="User Id: ">
+    <ImageButton
+        android:id="@+id/delete_invitation"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/ic_close"
+        android:contentDescription="Logo"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:foreground="@drawable/ripple"
+        android:text="Name: ">
 
-    </TextView>
+    </ImageButton>
 
 
 
-</LinearLayout>
+
+
+
+</RelativeLayout>

@@ -1,15 +1,29 @@
 package com.example.mobileproject.models;
 
 public class Suit {
-    String brand, name, gender, color, date;
+    String brand, name, gender, color, price, description, img;
 
-    public Suit(String brand, String name, String gender, String color, String date)
+    public Suit(String brand, String name, String gender, String color, String price, String description, String img)
     {
         this.brand = brand;
         this.name = name;
         this.gender = gender;
         this.color = color;
-        this.date = date;
+        this.price = price;
+        this.description = description;
+        this.img = img;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImg() {
+        return img;
     }
 
     public String getColor() {
@@ -28,10 +42,6 @@ public class Suit {
         return gender;
     }
 
-    public String getDate() {
-        return date;
-    }
-
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -40,15 +50,23 @@ public class Suit {
         this.gender = gender;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

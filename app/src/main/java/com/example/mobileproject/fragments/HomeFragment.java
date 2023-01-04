@@ -18,11 +18,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobileproject.R;
+import com.example.mobileproject.activities.AboutUs;
+import com.example.mobileproject.activities.BouquetActivity;
+import com.example.mobileproject.activities.CakeActivity;
+import com.example.mobileproject.activities.DressActivity;
+import com.example.mobileproject.activities.JewelryActivity;
+import com.example.mobileproject.activities.MusicActivity;
 import com.example.mobileproject.activities.SuitActivity;
 
 public class HomeFragment extends Fragment {
 
-    CardView suit;
+    CardView suit, dress, music, cake, bouquet, jewelry, about;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -63,11 +69,66 @@ public class HomeFragment extends Fragment {
         TextView textView = toolbar.findViewById(R.id.name);
         textView.setText("Vendors");
         suit = view.findViewById(R.id.suit);
+        dress = view.findViewById(R.id.dress);
+        music = view.findViewById(R.id.music);
+        cake = view.findViewById(R.id.cake);
+        bouquet = view.findViewById(R.id.bouquet);
+        jewelry = view.findViewById(R.id.jewelry);
+        about = view.findViewById(R.id.about_us);
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), AboutUs.class);
+                startActivity(intent);
+            }
+        });
+
+
+        jewelry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), JewelryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        bouquet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), BouquetActivity.class);
+                startActivity(intent);
+            }
+        });
 
         suit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), SuitActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        dress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), DressActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        music.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), MusicActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cake.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CakeActivity.class);
                 startActivity(intent);
             }
         });

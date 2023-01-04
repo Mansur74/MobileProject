@@ -13,14 +13,14 @@
         >
 
         <androidx.cardview.widget.CardView
-            android:layout_width="175dp"
-            android:layout_height="175dp"
+            android:layout_width="160dp"
+            android:layout_height="240dp"
             app:cardCornerRadius="10dp"
             >
             <ImageView
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:src="@drawable/dress"
+                android:id="@+id/img"
+                android:layout_width="160dp"
+                android:layout_height="240dp"
                 android:scaleType="centerCrop">
 
             </ImageView>
@@ -28,7 +28,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="275dp"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -41,6 +41,8 @@
             </TextView>
 
             <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#D2D2D2"
@@ -56,21 +58,8 @@
             </TextView>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#D2D2D2"
-                >
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Gender">
-
-            </TextView>
-
-            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#D2D2D2"
@@ -86,6 +75,8 @@
             </TextView>
 
             <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#D2D2D2"
@@ -101,6 +92,8 @@
             </TextView>
 
             <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#D2D2D2"

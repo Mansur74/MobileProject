@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mobileproject.R;
 import com.example.mobileproject.models.Suit;
 
@@ -29,15 +31,22 @@ public class SuitAdapter extends ArrayAdapter<Suit> {
 
         TextView brand = (TextView) currencyView.findViewById(R.id.brand);
         TextView name = (TextView) currencyView.findViewById(R.id.name);
-        TextView gender = (TextView) currencyView.findViewById(R.id.gender);
         TextView color = (TextView) currencyView.findViewById(R.id.color);
         TextView price = (TextView) currencyView.findViewById(R.id.price);
+        TextView description = (TextView) currencyView.findViewById(R.id.description);
+
+        ImageView imageView = (ImageView) currencyView.findViewById(R.id.img);
+
+        Glide.with(getContext())
+                .load(suitData.getImg())
+                .override(300, 200)
+                .into(imageView);
 
         brand.setText(suitData.getBrand());
         name.setText(suitData.getName());
-        gender.setText(suitData.getGender());
         color.setText(suitData.getColor());
-        price.setText(suitData.getDate());
+        price.setText(suitData.getPrice());
+        description.setText(suitData.getDescription());
 
         return currencyView;
     }

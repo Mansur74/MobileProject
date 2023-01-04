@@ -10,10 +10,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.mobileproject.R;
 import com.example.mobileproject.activities.RegisterActivity;
+import com.example.mobileproject.utilities.AlertDialogs;
 import com.example.mobileproject.utilities.SharedPreferencedManager;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,7 +28,9 @@ public class ProfileFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    TextView email, name, nameSurname, phoneNum;
+    AlertDialogs alertDialogs;
+    TextView email, nameSurname, phoneNum;
+    ImageButton edit;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -60,18 +64,19 @@ public class ProfileFragment extends Fragment {
         TextView textView = toolbar.findViewById(R.id.name);
         textView.setText("Profile");
 
+        alertDialogs = new AlertDialogs();
+
         email = view.findViewById(R.id.email);
-        name = view.findViewById(R.id.name);
         nameSurname = view.findViewById(R.id.name_surname);
         phoneNum = view.findViewById(R.id.phone_number);
+        edit = view.findViewById(R.id.edit_profile);
 
         email.setText(SharedPreferencedManager.getInstance(getContext()).getUserEmail());
-        name.setText(SharedPreferencedManager.getInstance(getContext()).getName());
         nameSurname.setText(SharedPreferencedManager.getInstance(getContext()).getName() + " " + SharedPreferencedManager.getInstance(getContext()).getSurname());
         phoneNum.setText(SharedPreferencedManager.getInstance(getContext()).getPhoneNumber());
 
-
         logOut = view.findViewById(R.id.logout);
+
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +86,13 @@ public class ProfileFragment extends Fragment {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 getActivity().finish();
+            }
+        });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogs.editProfile(getContext());
             }
         });
         return view;

@@ -1,11 +1,15 @@
 package com.example.mobileproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MotionEventCompat;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,6 +32,7 @@ public class SuitActivity extends AppCompatActivity {
     ListView suitList;
     List<Suit> suits;
     SuitAdapter adapter;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +45,20 @@ public class SuitActivity extends AppCompatActivity {
         adapter = new SuitAdapter(SuitActivity.this, suits);
         suitList.setAdapter(adapter);
 
+        toolbar = findViewById(R.id.toolbar);
+        ImageButton backButton = toolbar.findViewById(R.id.back);
+        TextView textView = toolbar.findViewById(R.id.name);
+        textView.setText("Suits");
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://www.jsonkeeper.com/b/OYSY";
+        String url = "https://www.jsonkeeper.com/b/8UNN";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -51,18 +68,19 @@ public class SuitActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
-
                         try {
-                            for(int i=0; i <  response.getJSONArray("suit").length(); i++)
+                            for(int i=0; i <  response.getJSONArray("suits").length(); i++)
                             {
-                               JSONObject object = response.getJSONArray("suit").getJSONObject(i);
+                               JSONObject object = response.getJSONArray("suits").getJSONObject(i);
                                String brand = object.getString("brand");
+                               String name = object.getString("name");
                                String gender = object.getString("gender");
                                String color = object.getString("color");
-                               String date = object.getString("date");
+                               String price = object.getString("price");
+                               String description = object.getString("description");
+                               String img_url = object.getString("img_url");
 
-                               Suit suit = new Suit(brand, "bos",gender, color, date);
+                               Suit suit = new Suit(brand, name, gender, color, price, description, img_url);
                                suits.add(suit);
                             }
 
@@ -85,21 +103,6 @@ public class SuitActivity extends AppCompatActivity {
 
 
 
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event){
-
-        int action = MotionEventCompat.getActionMasked(event);
-
-        switch(action) {
-            case (MotionEvent.ACTION_UP) :
-                Toast.makeText(getApplicationContext(), "asfsffa", Toast.LENGTH_LONG).show();
-                return true;
-
-            default :
-                return super.onTouchEvent(event);
-        }
     }
 
 

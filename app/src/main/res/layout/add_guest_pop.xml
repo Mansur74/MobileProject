@@ -54,28 +54,6 @@
         <TextView
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:text="Gender: ">
-
-        </TextView>
-
-        <EditText
-            android:id="@+id/gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress">
-
-        </EditText>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <TextView
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
             android:text="E-mail: ">
 
         </TextView>
@@ -104,9 +82,32 @@
         <EditText
             android:id="@+id/tel_num"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal">
 
         </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:text="Gender: ">
+
+        </TextView>
+
+        <Spinner
+            android:id="@+id/gender"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:spinnerMode="dropdown">
+
+        </Spinner>
 
     </LinearLayout>
 
