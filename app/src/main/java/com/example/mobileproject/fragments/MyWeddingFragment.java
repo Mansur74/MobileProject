@@ -56,7 +56,9 @@ public class MyWeddingFragment extends Fragment implements ActivityCompat.OnRequ
                 public void onActivityResult(Boolean result) {
                     if(result)
                     {
-                        db.sendSms(getActivity(), "Dugunumuze davetlisiniz, alttaki varification kodunu kullanmayi unutmayin.");
+                        db.sendSms(getActivity(), "You are invited to our wedding," +
+                                " you can approve the invitation with your invitation code below." +
+                                " Wedding Inviter Application Url: https://www.exampleapp.com");
                     }
                     else
                         return;

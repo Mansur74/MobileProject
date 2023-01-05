@@ -60,7 +60,7 @@ public class CakeActivity extends AppCompatActivity {
         });
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://www.jsonkeeper.com/b/D38A";
+        String url = "https://www.jsonkeeper.com/b/QTWK";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -76,7 +76,7 @@ public class CakeActivity extends AppCompatActivity {
                                 JSONObject object = response.getJSONArray("cakes").getJSONObject(i);
                                 String name = object.getString("name");
                                 String ingredients = object.getString("ingredients");
-                                String layer = object.getString("layer");
+                                String layer = "Layer: " + object.getString("layer");
                                 String price = object.getString("price");
                                 String img_url = object.getString("img_url");
 

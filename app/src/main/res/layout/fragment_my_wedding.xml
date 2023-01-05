@@ -32,19 +32,19 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="23"
+                android:layout_weight="35"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
                     android:layout_gravity="center"
                     app:cardCornerRadius="50dp"
                     android:backgroundTint="@color/light_ping"
                     >
                     <ImageView
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_gravity="center"
                         android:src="@drawable/dance">
 
@@ -56,7 +56,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="20"
+                android:layout_weight="30"
                 android:orientation="vertical">
 
                 <TextView
@@ -65,17 +65,19 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:paddingEnd="50dp"
-                    android:textSize="25sp"
-                    android:text="Bride">
+                    android:textSize="30sp"
+                    android:text="Bride"
+                    android:fontFamily="@font/ariana_violeta">
 
                 </TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:layout_gravity="center"
-                    android:text="@string/and">
+                    android:text="@string/and"
+                    android:fontFamily="@font/ariana_violeta">
 
                 </TextView>
 
@@ -85,8 +87,9 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:paddingStart="50dp"
-                    android:textSize="25sp"
-                    android:text="Groom">
+                    android:textSize="30sp"
+                    android:text="Groom"
+                    android:fontFamily="@font/ariana_violeta">
 
                 </TextView>
 
@@ -95,8 +98,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="25"
-                android:paddingTop="10dp"
+                android:layout_weight="30"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:orientation="vertical"
@@ -105,20 +107,23 @@
                 <TextView
                     android:id="@+id/message"
                     android:layout_width="match_parent"
-                    android:layout_weight="3"
+                    android:layout_weight="10"
                     android:layout_height="0dp"
                     android:textAlignment="center"
-                    android:text="Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet">
-
+                    android:text="Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet"
+                    android:fontFamily="@font/ariana_violeta"
+                    android:textSize="18sp">
                 </TextView>
 
                 <TextView
                     android:id="@+id/address"
                     android:layout_width="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="6"
                     android:layout_height="0dp"
                     android:textAlignment="center"
-                    android:text="Adress">
+                    android:text="Adress"
+                    android:fontFamily="@font/ariana_violeta"
+                    android:textSize="18sp">
 
                 </TextView>
 
@@ -130,7 +135,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="10"
+                android:layout_weight="25"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -143,7 +148,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="Family">
+                        android:text="Family"
+                        android:fontFamily="@font/ariana_violeta"
+                        android:textSize="25sp">
 
                     </TextView>
                     <TextView
@@ -151,7 +158,9 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="Mother and Father Surname">
+                        android:text="Mother and Father Surname"
+                        android:fontFamily="@font/ariana_violeta"
+                        android:textSize="20sp">
 
                     </TextView>
 
@@ -167,7 +176,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="Family">
+                        android:text="Family"
+                        android:fontFamily="@font/ariana_violeta"
+                        android:textSize="25sp">
 
                     </TextView>
                     <TextView
@@ -175,7 +186,9 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:text="Mother and Father Surname">
+                        android:text="Mother and Father Surname"
+                        android:fontFamily="@font/ariana_violeta"
+                        android:textSize="20sp">
 
                     </TextView>
                 </LinearLayout>
@@ -187,7 +200,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="8"
+                android:layout_weight="15"
                 android:orientation="vertical">
 
                 <TextView
@@ -195,7 +208,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="21:00">
+                    android:text="21:00"
+                    android:fontFamily="@font/ariana_violeta"
+                    android:textSize="20sp">
 
                 </TextView>
                 <TextView
@@ -203,7 +218,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="20:02:2022">
+                    android:text="20:02:2022"
+                    android:fontFamily="@font/ariana_violeta"
+                    android:textSize="20sp">
 
                 </TextView>
 
@@ -213,7 +230,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="12"
+                android:layout_weight="15"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatButton

@@ -58,7 +58,7 @@ public class SuitActivity extends AppCompatActivity {
         });
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://www.jsonkeeper.com/b/8UNN";
+        String url = " https://www.jsonkeeper.com/b/PCI1";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(
@@ -74,13 +74,12 @@ public class SuitActivity extends AppCompatActivity {
                                JSONObject object = response.getJSONArray("suits").getJSONObject(i);
                                String brand = object.getString("brand");
                                String name = object.getString("name");
-                               String gender = object.getString("gender");
                                String color = object.getString("color");
                                String price = object.getString("price");
                                String description = object.getString("description");
                                String img_url = object.getString("img_url");
 
-                               Suit suit = new Suit(brand, name, gender, color, price, description, img_url);
+                               Suit suit = new Suit(brand, name, color, price, description, img_url);
                                suits.add(suit);
                             }
 

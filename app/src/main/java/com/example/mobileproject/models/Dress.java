@@ -2,13 +2,12 @@ package com.example.mobileproject.models;
 
 public class Dress {
 
-    String brand, name, gender, color, price, description, img;
-    public Dress(String brand, String name, String gender, String color, String price, String description, String img)
+    String brand, name, color, price, description, img;
+    public Dress(String brand, String name, String color, String price, String description, String img)
     {
 
         this.brand = brand;
         this.name = name;
-        this.gender = gender;
         this.color = color;
         this.price = price;
         this.description = description;
@@ -21,10 +20,6 @@ public class Dress {
 
     public String getName() {
         return name;
-    }
-
-    public String getGender() {
-        return gender;
     }
 
     public String getColor() {
@@ -49,10 +44,6 @@ public class Dress {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public void setColor(String color) {

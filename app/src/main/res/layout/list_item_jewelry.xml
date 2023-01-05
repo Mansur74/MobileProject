@@ -20,8 +20,7 @@
             <ImageView
                 android:id="@+id/jewelry_img"
                 android:layout_width="120dp"
-                android:layout_height="180dp"
-                android:scaleType="centerCrop">
+                android:layout_height="180dp">
 
             </ImageView>
         </androidx.cardview.widget.CardView>

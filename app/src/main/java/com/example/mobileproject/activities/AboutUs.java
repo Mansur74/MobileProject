@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -21,7 +22,16 @@ public class AboutUs extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         ImageButton backButton = toolbar.findViewById(R.id.back);
         TextView textView = toolbar.findViewById(R.id.name);
-        textView.setText("Bouquets");
+        textView.setText("About Us");
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
     }
 }

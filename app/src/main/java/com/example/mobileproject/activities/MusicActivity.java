@@ -48,10 +48,10 @@ public class MusicActivity extends AppCompatActivity {
         musicList = findViewById(R.id.music_list);
         musics = new ArrayList<>();
 
-        Music music = new Music("piano", "anonim", "piano");
-        Music music2 = new Music("piano2", "anonim", "romantic");
-        Music music3 = new Music("Safer", "from First Date", "piano3");
-        Music music4 = new Music("Whach What Happens", "from NEWSIES", "piano4");
+        Music music = new Music("Canon In D", "from Pachelbel Canon, Johann Pachelbel", "canon");
+        Music music2 = new Music("Instrumental Piano", "Anonim", "instrumental");
+        Music music3 = new Music("Epic Music", "Anonim", "epic");
+        Music music4 = new Music("Beautiful Piano", "Anonim", "piano");
 
         musics.add(music);
         musics.add(music2);

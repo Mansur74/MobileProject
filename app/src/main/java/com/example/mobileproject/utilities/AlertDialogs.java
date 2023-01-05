@@ -1,12 +1,14 @@
 package com.example.mobileproject.utilities;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
@@ -277,7 +279,7 @@ public class AlertDialogs {
 
     }
 
-    public void editProfile(Context ctx)
+    public void editProfile(Context ctx, TextView NameAndSurname, TextView PhoneNumber)
     {
         AlertDialog.Builder dialogBox = new AlertDialog.Builder(ctx, R.style.CustomAlertDialog);
         LayoutInflater factory = LayoutInflater.from(ctx);
@@ -303,6 +305,8 @@ public class AlertDialogs {
                 {
                     SharedPreferencedManager.getInstance(ctx).user_login(SharedPreferencedManager.instance.getUserEmail(), name_t ,surname_t, phoneNumber_t);
                     db.createNewUser(db.getmAuth().getCurrentUser(), ctx);
+                    NameAndSurname.setText(name_t + " " + surname_t);
+                    PhoneNumber.setText(phoneNumber_t);
                 }
 
                 dialog.cancel();

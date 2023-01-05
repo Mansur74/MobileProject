@@ -92,7 +92,7 @@ public class ProfileFragment extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertDialogs.editProfile(getContext());
+                alertDialogs.editProfile(getContext(), nameSurname, phoneNum);
             }
         });
         return view;
