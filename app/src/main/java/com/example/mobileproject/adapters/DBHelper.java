@@ -362,8 +362,9 @@ public class DBHelper {
 
                         SmsManager sms = SmsManager.getDefault();
                         sms.sendTextMessage(phoneNum, null, message + "\nVerification Code: " + key, null, null);
-                        Toast.makeText(ctx,"Message is sended to " + name + " " + surname , Toast.LENGTH_SHORT).show();
                     }
+
+                    Toast.makeText(ctx,"Message is sended to all guests" , Toast.LENGTH_SHORT).show();
 
                 }
             }

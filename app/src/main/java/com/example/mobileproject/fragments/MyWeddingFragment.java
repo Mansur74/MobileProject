@@ -58,7 +58,7 @@ public class MyWeddingFragment extends Fragment implements ActivityCompat.OnRequ
                     {
                         db.sendSms(getActivity(), "You are invited to our wedding," +
                                 " you can approve the invitation with your invitation code below." +
-                                " Wedding Inviter Application Url: https://www.exampleapp.com");
+                                " \nApplication Url: exampleapp.com");
                     }
                     else
                         return;

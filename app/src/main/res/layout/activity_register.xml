@@ -79,7 +79,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/dark_ping"
                 android:layout_alignParentBottom="true"
-                android:text="If you don't have an account you can Login from here."
+                android:text="If you have an account you can Login from here."
                 >
 
             </TextView>

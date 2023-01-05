@@ -58,7 +58,7 @@ public class SuitActivity extends AppCompatActivity {
         });
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = " https://www.jsonkeeper.com/b/PCI1";
+        String url = "https://www.jsonkeeper.com/b/PCI1";
         JsonObjectRequest
                 jsonObjectRequest
                 = new JsonObjectRequest(

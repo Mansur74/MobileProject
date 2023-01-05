@@ -82,7 +82,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/dark_ping"
                 android:layout_alignParentBottom="true"
-                android:text="If you have an accoun you can Register from here."
+                android:text="If you don't have an accoun you can Register from here."
                 >
 
             </TextView>
