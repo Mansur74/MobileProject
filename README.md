@@ -1,4 +1,6 @@
 # MobileProject
+=> CENG 427 Mobile Application Project (Wedding Inviter)
+
 ![a](https://user-images.githubusercontent.com/73182192/211913153-f55c5eb9-c273-4ce2-8a73-11fbb38ebd37.png)
 ![b](https://user-images.githubusercontent.com/73182192/211913166-4dc5863d-06eb-4f14-bfe2-91a5fccd3658.png)
 ![c](https://user-images.githubusercontent.com/73182192/211913177-3996beb4-eb46-45b4-820d-25456039e6af.png)
